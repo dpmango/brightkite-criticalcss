@@ -12,7 +12,15 @@ var critical      = require('critical').stream;
 // Generate & Inline Critical-path CSS
 gulp.task('critical', function () {
   return gulp.src('src/index.html')
-      .pipe(critical({base: 'src/', inline: true, css: ['src/css/min.css']}))
+      .pipe(critical({
+        base: 'src/',
+        inline: true,
+        css: ['src/css/min.css'],
+        height: 900,
+        width: 1200,
+        minify: true,
+
+      }))
       .on('error', function(err) { gutil.log(gutil.colors.red(err.message)); })
       .pipe(gulp.dest('dist'));
 });
